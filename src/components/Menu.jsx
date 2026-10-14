@@ -24,16 +24,17 @@ export default class Menu extends Component {
     render() {
         return (
         <div className="App">
-            <nav className="navbar navbar-expand-lg navbar-light bg-light"> <NavLink className="navbar-brand" href="#"> Navbar </NavLink>
+            <nav className="navbar navbar-expand-lg navbar-light bg-light"> <NavLink className="navbar-brand" to="/"> Navbar </NavLink>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span
                         className="navbar-toggler-icon"></span> </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
-                        <li className="nav-item active"> <NavLink className="nav-link" href="#"> Home <span
+                        <li className="nav-item active"> <NavLink className="nav-link" to="/"> Home <span
                                     className="sr-only">(current)</span> </NavLink> </li>
-                        <li className="nav-item"> <NavLink className="nav-link" href="#"> Features </NavLink> </li>
-                        <li className="nav-item"> <NavLink className="nav-link" href="#"> Pricing </NavLink> </li>
+                        <li className="nav-item"> <NavLink className="nav-link" to="/insertarhospital"> Insertar Hospital </NavLink> </li>
+                        <li className="nav-item"> <NavLink className="nav-link" to="/hospitalescomponent"> Hospitales </NavLink> </li>
+                        <li className="nav-item"> <NavLink className="nav-link" to="/service"> Service </NavLink> </li>
                     </ul>
                 </div>
                 <li className="nav-item dropdown">

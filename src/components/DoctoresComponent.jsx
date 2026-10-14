@@ -1,43 +1,34 @@
 import React, { Component } from 'react'
-import axios from 'axios'
-import Global from '../Global'
 import DoctorComponent from './DoctorComponent'
+import ServiceHospitales from '../ServiceHospitales'
 
 export default class DoctoresComponent extends Component {
     
+    service = new ServiceHospitales();
     state = {
         doctores: [],
-        doctor: []
+        doctor: [],
+        idddoctor: -1
     }
 
-    loadDoctores = () => {
-        axios.get(Global.urlDoctores + '/api/Doctores/DoctoresHospital/' + this.props.idHospital).then((res) => {
-            this.setState({ 
-                doctores: res.data 
+    loadDoctores = (idHospital) => {
+        this.service.loadDoctores().then((res) => {
+            this.setState({
+                doctores: res
             })
         })
     }
 
     componentDidMount() {
-        this.loadDoctores();
+        this.service.loadDoctores(this.props.idHospital);
     }
 
     componentDidUpdate(prevProps) {
         if (this.props.idHospital !== prevProps.idHospital) {
-            this.loadDoctores();
+            this.service.loadDoctores(this.props.idHospital);
         }
     }
-
-    cargarInfoDoctor = (idDoctor) => {
-        /*axios.get(Global.urlDoctores + 'api/Doctores/' + idDoctor).then((res) => {
-            this.setState({
-                doctor: res.data
-            })
-        })*/
-
-        return(<DoctorComponent idDoctor={idDoctor} pintarInfo={this.pintarInfoDoctor} />)
-    }
-
+    
     pintarInfoDoctor = (doctor) => {
         this.setState({
             doctor: doctor
@@ -64,14 +55,14 @@ export default class DoctoresComponent extends Component {
                 <ul>
                     {
                         this.state.doctores.map((doctor, index) => {
-                            return(<li key={index}>{doctor.idDoctor}. {doctor.apellido}<button onClick={() => this.cargarInfoDoctor(doctor.idDoctor)}>Ver detalles</button></li>)
+                            return(<li key={index}>{doctor.idDoctor}. {doctor.apellido}<button onClick={() => this.setState({ idddoctor: doctor.idDoctor })}>Ver detalles</button></li>)
                         })
                     }
                 </ul>
             }
             {
-                this.props.doctor.length !== 0 &&
-                this.pintarInfoDoctor(this.props.doctor)
+                this.state.idddoctor !== -1 && 
+                <DoctorComponent idDoctor={this.state.idddoctor} />
             }
         </div>
         )

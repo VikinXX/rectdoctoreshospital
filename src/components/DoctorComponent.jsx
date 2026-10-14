@@ -15,16 +15,33 @@ export default class DoctorComponent extends Component {
                 doctor: res.data
             })
         })
-        return(<DoctoresComponent doctor={this.state.doctor}/>)
     }
 
     componentDidMount() {
         this.loadDoctor(this.props.idDoctor);
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.idDoctor !== prevProps.idDoctor) {
+            this.loadDoctor(this.props.idDoctor);
+        }
+    }
+
     render() {
         return (
-            <div></div>
+            <div>
+                <h1>Detalles del doctor</h1>
+                {
+                    this.state.doctor &&
+                    <div>
+                        <p>Id del doctor: {this.state.doctor.idDoctor}</p>
+                        <p>Apellido: {this.state.doctor.apellido}</p>
+                        <p>Especialidad: {this.state.doctor.especialidad}</p>
+                        <p>Salario: {this.state.doctor.salario}</p>
+                    </div>
+                }
+                
+            </div>
         )
     }
 }

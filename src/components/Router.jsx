@@ -5,6 +5,9 @@ import Home from './Home'
 import Hospitales from './Hospitales'
 import DoctoresComponent from './DoctoresComponent'
 import { useParams } from 'react-router-dom'
+import PeticionPost from './PeticionPost'
+import HospitalesComponent from './HospitalesComponent'
+import EjemplosServiceComponent from './EjemplosServiceComponent'
 
 export default class Router extends Component {
     render() {
@@ -23,6 +26,9 @@ export default class Router extends Component {
                     <Route path='/hospitales' element={<Hospitales />} />
                     <Route path='/doctores' element={<DoctoresComponent />} />
                     <Route path='/doctores/:idHospital' element={<DoctoresElement />} />
+                    <Route path='/insertarhospital' element={<PeticionPost />} />
+                    <Route path='/hospitalescomponent' element={<HospitalesComponent />} />
+                    <Route path='/service' element={<EjemplosServiceComponent />} /> 
                 </Routes>
             </BrowserRouter>
         </div>
